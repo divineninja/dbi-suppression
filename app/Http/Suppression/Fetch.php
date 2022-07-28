@@ -14,7 +14,8 @@ class Fetch
     */
     public static function get_campaign()
     {
-        $url = 'http://'.config('app.crm').'/api.php';
+        $ip = setting('admin.crm') ?? config('app.crm');
+        $url = "http://$ip/api.php";
 
         return self::get_data_guzzle($url);
     }
@@ -27,7 +28,8 @@ class Fetch
      */
     public static function get_questions($database)
     {
-        $url = 'http://'.config('app.crm').'/questions_api.php?username='.base64_encode($database);
+        $ip = setting('admin.crm') ?? config('app.crm');
+        $url = "http://{$ip}/questions_api.php?username=".base64_encode($database);
         return self::get_data_guzzle($url);
     }
     

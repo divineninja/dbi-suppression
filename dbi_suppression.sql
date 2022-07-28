@@ -485,7 +485,7 @@ CREATE TABLE `question_suppressions` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -494,7 +494,7 @@ CREATE TABLE `question_suppressions` (
 
 LOCK TABLES `question_suppressions` WRITE;
 /*!40000 ALTER TABLE `question_suppressions` DISABLE KEYS */;
-INSERT INTO `question_suppressions` VALUES (11,'backup_14June2022_24kbullion',26,1,'2022-07-27 22:31:41','2022-07-27 22:31:41'),(12,'backup_14June2022_24kbullion',26,2,'2022-07-27 22:31:41','2022-07-27 22:31:41');
+INSERT INTO `question_suppressions` VALUES (11,'backup_14June2022_24kbullion',26,1,'2022-07-27 22:31:41','2022-07-27 22:31:41'),(12,'backup_14June2022_24kbullion',26,2,'2022-07-27 22:31:41','2022-07-27 22:31:41'),(13,'backup_14June2022_24kbullion',23,1,'2022-07-27 23:57:31','2022-07-27 23:57:31'),(14,'backup_14June2022_24kbullion',23,2,'2022-07-27 23:57:31','2022-07-27 23:57:31');
 /*!40000 ALTER TABLE `question_suppressions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -544,7 +544,7 @@ CREATE TABLE `settings` (
   `group` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `settings_key_unique` (`key`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -553,7 +553,7 @@ CREATE TABLE `settings` (
 
 LOCK TABLES `settings` WRITE;
 /*!40000 ALTER TABLE `settings` DISABLE KEYS */;
-INSERT INTO `settings` VALUES (1,'site.title','Site Title','DBI Suppression','','text',1,'Site'),(2,'site.description','Site Description',NULL,'','text',2,'Site'),(3,'site.logo','Site Logo','','','image',3,'Site'),(4,'site.google_analytics_tracking_id','Google Analytics Tracking ID',NULL,'','text',4,'Site'),(5,'admin.bg_image','Admin Background Image','','','image',5,'Admin'),(6,'admin.title','Admin Title','DBI Suppression','','text',1,'Admin'),(7,'admin.description','Admin Description','Welcome to Voyager. The Missing Admin for Laravel','','text',2,'Admin'),(8,'admin.loader','Admin Loader','','','image',3,'Admin'),(9,'admin.icon_image','Admin Icon Image','','','image',4,'Admin'),(10,'admin.google_analytics_client_id','Google Analytics Client ID (used for admin dashboard)',NULL,'','text',1,'Admin');
+INSERT INTO `settings` VALUES (1,'site.title','Site Title','DBI Suppression','','text',1,'Site'),(2,'site.description','Site Description',NULL,'','text',2,'Site'),(3,'site.logo','Site Logo','','','image',3,'Site'),(4,'site.google_analytics_tracking_id','Google Analytics Tracking ID',NULL,'','text',4,'Site'),(5,'admin.bg_image','Admin Background Image','','','image',5,'Admin'),(6,'admin.title','Admin Title','DBI Suppression','','text',1,'Admin'),(7,'admin.description','Admin Description','Welcome to Voyager. The Missing Admin for Laravel','','text',2,'Admin'),(8,'admin.loader','Admin Loader','','','image',3,'Admin'),(9,'admin.icon_image','Admin Icon Image','','','image',4,'Admin'),(10,'admin.google_analytics_client_id','Google Analytics Client ID (used for admin dashboard)',NULL,'','text',1,'Admin'),(12,'admin.crm','CRM IP','222.127.15.164',NULL,'text',6,'Admin');
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -715,4 +715,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-28 15:44:42
+-- Dump completed on 2022-07-28 15:57:57
