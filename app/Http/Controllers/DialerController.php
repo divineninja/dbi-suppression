@@ -14,14 +14,14 @@ class DialerController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->phone) {
-            $data = Dialer::where('phone_number', $request->phone)->first();
+        if ($request->number) {
+            $data = Dialer::where('phone_number', $request->number)->first();
             
             return response()->json([
                 'leads' => $data,
                 'status' => 'ok',
                 'code' => 200,
-            ], 200);
+            ], 200)->withCallback('callback_function');
         } else {
             abort('404', 'You are not allowed to access this page');
         }
