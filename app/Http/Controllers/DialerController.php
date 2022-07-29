@@ -14,7 +14,7 @@ class DialerController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->data && $request->phone) {
+        if ($request->phone) {
             $data = Dialer::where('phone_number', $request->phone)->first();
             
             return response()->json([
@@ -23,7 +23,7 @@ class DialerController extends Controller
                 'code' => 200,
             ], 200);
         } else {
-            abort('401', 'You are not allowed to access this page');
+            abort('404', 'You are not allowed to access this page');
         }
     }
 
