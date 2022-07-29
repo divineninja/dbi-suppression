@@ -18,7 +18,7 @@ class DialerController extends Controller
             $data = Dialer::where('phone_number', $request->number)->first();
             
             return response()->json([
-                'leads' => $data,
+                'leads' => ($data) ? $data : false,
                 'status' => 'ok',
                 'code' => 200,
             ], 200)->withCallback('callback_function');
