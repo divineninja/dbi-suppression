@@ -19,7 +19,7 @@ use App\Http\Controllers\QuestionSuppressionController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('admin');
 });
 
 Route::get('/cdn-crm', [DialerController::class, 'index'])->name('cdn-get');
