@@ -27,6 +27,7 @@ class Dialer extends Model
         'website',
         'position',
         'product_category',
+        'file_name',
     ];
 }
 

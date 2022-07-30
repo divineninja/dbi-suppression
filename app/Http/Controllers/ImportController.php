@@ -31,7 +31,7 @@ class ImportController extends Controller
      */
     public function submit(Request $request)
     {
-        Excel::import(new DialersImport, $request->file('file'));
+        Excel::import(new DialersImport($request->file('file')->getClientOriginalName()), $request->file('file'));
         return redirect()->route('voyager.dialers.index');
     }
 

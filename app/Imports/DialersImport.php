@@ -8,6 +8,26 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
 class DialersImport implements ToModel, WithHeadingRow
 {
+    
+    /**
+     * file
+     *
+     * @var mixed
+     */
+    public $file;
+    
+    /**
+     * __construct
+     *
+     * @param  mixed $file
+     * @return void
+     */
+    public function __construct($file)
+    {
+        $this->file = $file;
+    }
+
+
     /**
     * @param array $row
     *
@@ -15,6 +35,8 @@ class DialersImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
+        $this->deleteExisting($row['phone']);
+        
         return new Dialer([
             'phone_number' => $row['phone'],
             'title' => $row['title'],
@@ -33,6 +55,22 @@ class DialersImport implements ToModel, WithHeadingRow
             'website' => $row['website'],
             'position' => $row['position'],
             'product_category' => $row['product_category'] ?? 'none',
+            'file_name' => $this->file,
         ]);
+    }
+
+    
+    /**
+     * deleteExisting
+     *
+     * @param  mixed $phone
+     * @return void
+     */
+    private function deleteExisting($phone): void
+    {
+        $dialer = Dialer::where('phone_number', $phone)->first();
+        if ($dialer) {
+            $dialer->delete();
+        }
     }
 }
