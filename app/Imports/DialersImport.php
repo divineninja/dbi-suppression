@@ -5,17 +5,20 @@ namespace App\Imports;
 use App\Models\Dialer;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithBatchInserts;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
+use Maatwebsite\Excel\Concerns\WithUpserts;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class DialersImport implements ToModel, WithHeadingRow
+class DialersImport implements ToModel, WithHeadingRow, WithBatchInserts, WithChunkReading, ShouldQueue, WithUpserts
 {
-    
     /**
      * file
      *
      * @var mixed
      */
     public $file;
-    
+
     /**
      * __construct
      *
@@ -27,7 +30,6 @@ class DialersImport implements ToModel, WithHeadingRow
         $this->file = $file;
     }
 
-
     /**
     * @param array $row
     *
@@ -35,9 +37,8 @@ class DialersImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
-        $this->deleteExisting($row['phone']);
-        
-        return new Dialer([
+        return new Dialer(
+            [
             'phone_number' => $row['phone'],
             'title' => $row['title'],
             'first_name' => $row['fname'],
@@ -56,10 +57,20 @@ class DialersImport implements ToModel, WithHeadingRow
             'position' => $row['position'],
             'product_category' => $row['product_category'] ?? 'none',
             'file_name' => $this->file,
-        ]);
+            ]
+        );
     }
 
-    
+    /**
+     * uniqueBy
+     *
+     * @return void
+     */
+    public function uniqueBy()
+    {
+        return 'phone_number';
+    }
+
     /**
      * deleteExisting
      *
@@ -72,5 +83,25 @@ class DialersImport implements ToModel, WithHeadingRow
         if ($dialer) {
             $dialer->delete();
         }
+    }
+
+    /**
+     * batchSize
+     *
+     * @return int
+     */
+    public function batchSize(): int
+    {
+        return 1000;
+    }
+
+    /**
+     * chunkSize
+     *
+     * @return int
+     */
+    public function chunkSize(): int
+    {
+        return 500;
     }
 }
