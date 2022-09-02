@@ -35,7 +35,7 @@ Route::group(['prefix' => 'admin','as' => 'voyager.', 'middleware' => 'admin.use
     Route::get('dialer/truncate', [ImportController::class, 'truncate'])->name('dialer.truncate');
     Route::post('dialer/import', [ImportController::class, 'submit'])->name('dialer.import.submit');
 
-    
+
     Route::get('suppression/upload', [SuppressionGroupController::class, 'index'])->name('suppression.upload');
     Route::post('suppression/upload', [SuppressionGroupController::class, 'store'])->name('suppression.upload.submit');
 
